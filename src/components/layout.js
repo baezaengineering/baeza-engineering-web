@@ -1,53 +1,48 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useStaticQuery, graphql } from 'gatsby';
+import styled from 'styled-components';
+import Img from 'gatsby-image';
 
-import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import { GlobalStyle, Main } from '../styles';
+import Nav from './Nav';
 
-import Header from "./header"
-import "./layout.css"
+const LargeLogo = styled.div`
+	margin: 1rem auto 1.45rem auto;
+	max-width: 1100px;
+`;
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+	const data = useStaticQuery(graphql`
+		query HeaderLogoQuery {
+			allContentfulNavigation {
+				nodes {
+					companyLogo {
+						fluid(maxWidth: 2048, quality: 90) {
+							...GatsbyContentfulFluid
+						}
+					}
+				}
+			}
+		}
+	`);
 
-  return (
-    <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer style={{
-          marginTop: `2rem`
-        }}>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div>
-    </>
-  )
-}
+	return (
+		<>
+			<GlobalStyle />
+			<LargeLogo>
+				<Img fluid={data.allContentfulNavigation.nodes[0].companyLogo.fluid} />
+			</LargeLogo>
+			<Nav />
+			<Main>
+				<div className='container'>{children}</div>
+			</Main>
+		</>
+	);
+};
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+	children: PropTypes.node.isRequired,
+};
 
-export default Layout
+export default Layout;

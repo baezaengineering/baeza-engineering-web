@@ -1,10 +1,31 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
+const config = require("./src/config")
+
+const options = {
+  host: "cdn.contentful.com",
+  accessToken: "q7OPel7aHAdLeD4i2sCiwmCWSIIGcKgh4owKpRAxtVY",
+  spaceId: process.env.CONTENTFUL_SPACE_ID,
+}
+
+if (process.env.NODE_ENV === "production") {
+  options.host = process.env.CONTENTFUL_CDA_HOST
+  options.accessToken = process.env.CONTENTFUL_CDA_TOKEN
+}
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: config.siteTitle,
+    siteUrl: config.siteUrl,
+    description: config.siteUrl,
   },
   plugins: [
+    {
+      resolve: "gatsby-source-contentful",
+      options: options,
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -15,16 +36,20 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-styled-components`,
+    {
+      resolve: "gatsby-plugin-no-sourcemaps",
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Baeza Engineering`,
+        short_name: `BaezaEngineering`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/BE_Logo.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

@@ -14,23 +14,47 @@ import Img from "gatsby-image"
  */
 
 const Image = () => {
+  // const data = useStaticQuery(graphql`
+  //   query {
+  //     placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
+  //       childImageSharp {
+  //         fluid(maxWidth: 300) {
+  //           ...GatsbyImageSharpFluid
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
   const data = useStaticQuery(graphql`
-    query {
-      placeholderImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid
+    {
+      logo: allContentfulAsset {
+        edges {
+          node {
+            fluid(maxWidth: 5000) {
+              ...GatsbyContentfulFluid
+            }
           }
         }
       }
     }
   `)
+  console.log(data)
+  // if (!data?.placeholderImage?.childImageSharp?.fluid) {
+  //   return <div>Picture not found</div>
+  // }
 
-  if (!data?.placeholderImage?.childImageSharp?.fluid) {
-    return <div>Picture not found</div>
-  }
-
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+  // return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+  return <Img fluid={data.logo.edges[0].node.fluid} />
 }
 
 export default Image
+
+// allContentfulAsset {
+//   nodes {
+//     fluid {
+//       ...GatsbyContentfulFluid
+//     }
+//     title
+//     description
+//   }
+// }
