@@ -4,7 +4,8 @@ import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 
-import { GlobalStyle, Main } from '../styles';
+import { GlobalStyle } from '../styles';
+// import Head from './Head';
 import Nav from './Nav';
 
 const LargeLogo = styled.div`
@@ -28,16 +29,15 @@ const Layout = ({ children }) => {
 	`);
 
 	return (
-		<>
+		<div id='root'>
+			{/* <Head metadata={site.siteMetadata} /> */}
 			<GlobalStyle />
 			<LargeLogo>
 				<Img fluid={data.allContentfulNavigation.nodes[0].companyLogo.fluid} />
 			</LargeLogo>
 			<Nav />
-			<Main>
-				<div className='container'>{children}</div>
-			</Main>
-		</>
+			<div className='container'>{children}</div>
+		</div>
 	);
 };
 
