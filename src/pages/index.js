@@ -2,16 +2,51 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
-import { Mixins, Main, Section } from '../styles';
 
-import { Layout, SEO, Carousel } from '../components';
-// import Image from "../components/image"
+import { Layout, SEO, Carousel, Certifications } from '../components';
+import { Mixins, Main, Section, Theme, Aside, Media } from '../styles';
+const { myColors } = Theme;
 
 const MainContainer = styled(Main)`
 	${Mixins.sidePadding};
+	background-color: ${myColors.gallery};
 `;
 
-const DevSection = styled(Section)``;
+const FlexContainer = styled.div`
+	${Media.thone`
+		display: block;
+	`};
+	${Mixins.flexContainer};
+	padding-right: 0;
+`;
+
+const Content = styled(Section)`
+	flex: 1;
+	padding-right: 50px;
+	padding-left: 50px;
+	${Media.desktop`
+		padding-right: 20px;
+		padding-left: 20px;
+	`};
+	${Media.thone`
+		padding-right: 0px;
+		padding-left: 0px;
+	`};
+`;
+
+const Sidebar = styled(Aside)`
+	background-color: blue;
+	padding-right: 25px;
+	padding-left: 25px;
+	${Media.desktop`
+		padding-right: 10px;
+		padding-left: 10px;
+	`};
+	${Media.thone`
+		padding-right: 0px;
+		padding-left: 0px;
+	`};
+`;
 
 const IndexPage = ({ data }) => {
 	console.log(data);
@@ -19,20 +54,14 @@ const IndexPage = ({ data }) => {
 		<Layout>
 			<MainContainer>
 				<SEO title='Home' />
-				<Carousel data={data} />
-				<DevSection>
-					<h1>Hi people</h1>
-					<p>Welcome to your new Gatsby site.</p>
-					<p>Now go build something great.</p>
-					<div style={{ maxWidth: `2000px`, marginBottom: `1.45rem` }}>
-						{/* <Image /> */}
-						{/* <Img fluid={data.navigation.nodes[0].companyLogo.fluid} /> */}
+				<Carousel carousel={data.carousel} />
+				<FlexContainer>
+					<Content>
+						<Certifications certifications={data.certifications} />
 						<Img fluid={data.projects.nodes[0].projectImage.fluid} />
-						<Img fluid={data.projects.nodes[0].projectImage.fluid} />
-						<Img fluid={data.projects.nodes[0].projectImage.fluid} />
-						<Img fluid={data.projects.nodes[0].projectImage.fluid} />
-					</div>
-				</DevSection>
+					</Content>
+					<Sidebar>Sidebar</Sidebar>
+				</FlexContainer>
 				<Link to='/page-2/'>Go to page 2</Link> <br />
 				<Link to='/using-typescript/'>Go to "Using TypeScript"</Link>
 			</MainContainer>
@@ -58,6 +87,17 @@ export const pageQuery = graphql`
 				id
 				description
 				certificationName
+			}
+		}
+		carousel: allContentfulImageCarousel {
+			nodes {
+				carouselImage {
+					fluid(maxWidth: 2048, quality: 90) {
+						...GatsbyContentfulFluid
+						src
+					}
+				}
+				carouselTimer
 			}
 		}
 		projects: allContentfulProject {

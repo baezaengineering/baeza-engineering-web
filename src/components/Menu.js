@@ -57,9 +57,9 @@ const NavListItem = styled.li`
 	position: relative;
 	font-size: ${fontSizes.large};
 	${Media.thone`
-  	margin: 0 auto 10px;
-  	font-size: ${fontSizes.medium};
-`};
+  		margin: 0 auto 10px;
+  		font-size: ${fontSizes.medium};
+	`};
 	${Media.tiny`font-size: ${fontSizes.smallish};`};
 `;
 

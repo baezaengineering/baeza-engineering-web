@@ -1,34 +1,43 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import AwesomeSlider from 'react-awesome-slider';
 import withAutoplay from 'react-awesome-slider/dist/autoplay';
-import Img from 'gatsby-image';
 import 'react-awesome-slider/dist/styles.css';
 
 import { Section } from '../styles';
-import logo from '../images/BE_Logo.png';
 import { Mixins } from '../styles';
-
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 
 const CarouselContainer = styled(Section)`
 	${Mixins.sidePadding}
+	margin-bottom: 50px;
 `;
 
-const Carousel = ({ data }) => {
-	console.log(data.projects.nodes[0].projectImage.fluid.src);
+const Carousel = ({ carousel }) => {
+	const { carouselImage, carouselTimer } = carousel.nodes[0];
+
 	return (
 		<CarouselContainer>
 			<AutoplaySlider
 				play={true}
 				cancelOnInteraction={false} // should stop playing on user interaction
-				interval={2000}
+				interval={parseInt(carouselTimer)}
 			>
-				<div data-src={data.projects.nodes[0].projectImage.fluid.src} />
-				<div data-src={logo} />
+				{carouselImage.map(({ fluid }, index) => {
+					return <div data-src={fluid.src} key={index} />;
+				})}
 			</AutoplaySlider>
 		</CarouselContainer>
 	);
+};
+
+Carousel.propTypes = {
+	data: PropTypes.object,
+};
+
+Carousel.defaultProps = {
+	data: {},
 };
 
 export default Carousel;

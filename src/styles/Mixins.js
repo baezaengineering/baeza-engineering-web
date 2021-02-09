@@ -5,6 +5,9 @@ import Media from './Media';
 const { myColors, fontSizes } = Theme;
 
 const Mixins = {
+	flexContainer: `
+		display: flex;
+	`,
 	sidePadding: css`
 		padding: 0 150px;
 		${Media.desktop`padding: 0 100px;`};

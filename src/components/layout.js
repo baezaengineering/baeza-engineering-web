@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
 		<div id='root'>
 			{/* <Head metadata={site.siteMetadata} /> */}
 			<GlobalStyle />
-			<LargeLogo>
+			<LargeLogo id='home'>
 				<Img fluid={data.allContentfulNavigation.nodes[0].companyLogo.fluid} />
 			</LargeLogo>
 			<Nav />

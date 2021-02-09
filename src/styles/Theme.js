@@ -4,6 +4,7 @@ const Theme = {
 		white: '#FFFFFF',
 		lightGrey: '#606a86',
 		slate: '#8892b0',
+		gallery: '#EEEEEE',
 		darkGrey: '#333f58',
 		sage: '#5CDB95',
 		transparentSage: 'rgba(92, 219, 149, 0.07)',
