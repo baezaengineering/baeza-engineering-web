@@ -6,3 +6,4 @@ export { default as Nav } from './Nav';
 export { default as SEO } from './seo';
 export { default as Certifications } from './Certifications';
 export { default as ProjectsShortList } from './ProjectsShortList';
+export { default as Contact } from './Contact';

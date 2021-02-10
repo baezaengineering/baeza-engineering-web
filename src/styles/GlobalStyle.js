@@ -42,8 +42,8 @@ const GlobalStyle = createGlobalStyle`
         background-color: ${myColors.darkGray};
         line-height: 1.3;
         font-family: sans-serif;
-        font-size: ${fontSizes.xlarge};
-        ${Media.phablet`font-size: ${fontSizes.large};`}
+        font-size: ${fontSizes.medium};
+        ${Media.phablet`font-size: ${fontSizes.small};`}
     
         &.hidden {
           overflow: hidden;

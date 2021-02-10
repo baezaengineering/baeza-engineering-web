@@ -2,6 +2,8 @@ const Theme = {
 	myColors: {
 		alto: '#DBDBDB',
 		white: '#FFFFFF',
+		scorpion: '#5E5E5E',
+		emperor: '#4F4F4F',
 		lightGrey: '#606a86',
 		slate: '#8892b0',
 		gallery: '#EEEEEE',

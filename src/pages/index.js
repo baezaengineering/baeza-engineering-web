@@ -9,6 +9,7 @@ import {
 	Carousel,
 	Certifications,
 	ProjectsShortList,
+	Contact,
 } from '../components';
 import { Mixins, Main, Section, Theme, Aside, Media } from '../styles';
 const { myColors } = Theme;
@@ -41,7 +42,6 @@ const Content = styled(Section)`
 `;
 
 const Sidebar = styled(Aside)`
-	background-color: blue;
 	padding-right: 25px;
 	padding-left: 25px;
 	${Media.desktop`
@@ -67,7 +67,9 @@ const IndexPage = ({ data }) => {
 						<ProjectsShortList projects={data.projectsShortList} />
 						{/* <Img fluid={data.projects.nodes[0].projectImage.fluid} /> */}
 					</Content>
-					<Sidebar>Sidebar</Sidebar>
+					<Sidebar>
+						<Contact contact={data.contact} />
+					</Sidebar>
 				</FlexContainer>
 				<Link to='/page-2/'>Go to page 2</Link> <br />
 				<Link to='/using-typescript/'>Go to "Using TypeScript"</Link>
@@ -116,6 +118,19 @@ export const pageQuery = graphql`
 				summary {
 					summary
 				}
+			}
+		}
+		contact: allContentfulContactSection {
+			nodes {
+				location {
+					lat
+					lon
+				}
+				address {
+					address
+				}
+				companyEmail
+				companyPhone
 			}
 		}
 	}

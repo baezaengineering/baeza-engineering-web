@@ -12,15 +12,17 @@ const ProjectsList = styled.ol``;
 const ProjectsListItem = styled.li``;
 
 const SectionTitle = styled.h2`
+	margin: 10px 0;
 	font-weight: bold;
 `;
 
 const SecondaryTitle = styled.p`
 	font-weight: bold;
+	padding: 10px 0;
 `;
 
 const Summary = styled.div`
-	margin: 13px;
+	margin: 20px;
 `;
 
 const ProjectsShortList = ({ projects }) => {

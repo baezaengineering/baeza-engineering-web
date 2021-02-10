@@ -26,9 +26,9 @@ module.exports = {
 			name: 'About Us',
 			url: '#aboutUs',
 		},
-		{
-			name: 'Contact',
-			url: '#contact',
-		},
+		// {
+		// 	name: 'Contact',
+		// 	url: '#contact',
+		// },
 	],
 };
