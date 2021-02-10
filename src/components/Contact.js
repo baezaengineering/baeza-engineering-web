@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 
-import { Section, Theme } from '../styles';
+import { Theme } from '../styles';
 const { myColors, fontSizes } = Theme;
 
 const ContactContainer = styled.div``;
