@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const CertsContainer = styled.div``;
@@ -21,7 +22,7 @@ const Certifications = ({ certifications }) => {
 			<CertsTitle>Firm Certifications</CertsTitle>
 			<CertsList>
 				{certifications.nodes.map(certs => {
-					const { certificationName, description, id } = certs;
+					const { certificationName, id } = certs;
 					return (
 						<CertsListItem key={id}>
 							<p>{certificationName}</p>
@@ -31,6 +32,10 @@ const Certifications = ({ certifications }) => {
 			</CertsList>
 		</CertsContainer>
 	);
+};
+
+Certifications.propTypes = {
+	certifications: PropTypes.object.isRequired,
 };
 
 export default Certifications;

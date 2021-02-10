@@ -3,7 +3,13 @@ import { Link, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
 
-import { Layout, SEO, Carousel, Certifications } from '../components';
+import {
+	Layout,
+	SEO,
+	Carousel,
+	Certifications,
+	ProjectsShortList,
+} from '../components';
 import { Mixins, Main, Section, Theme, Aside, Media } from '../styles';
 const { myColors } = Theme;
 
@@ -58,7 +64,8 @@ const IndexPage = ({ data }) => {
 				<FlexContainer>
 					<Content>
 						<Certifications certifications={data.certifications} />
-						<Img fluid={data.projects.nodes[0].projectImage.fluid} />
+						<ProjectsShortList projects={data.projectsShortList} />
+						{/* <Img fluid={data.projects.nodes[0].projectImage.fluid} /> */}
 					</Content>
 					<Sidebar>Sidebar</Sidebar>
 				</FlexContainer>
@@ -92,6 +99,7 @@ export const pageQuery = graphql`
 		carousel: allContentfulImageCarousel {
 			nodes {
 				carouselImage {
+					id
 					fluid(maxWidth: 2048, quality: 90) {
 						...GatsbyContentfulFluid
 						src
@@ -100,20 +108,13 @@ export const pageQuery = graphql`
 				carouselTimer
 			}
 		}
-		projects: allContentfulProject {
+		projectsShortList: allContentfulProjectsShortList {
 			nodes {
+				id
 				title
-				projectType
-				projectImage {
-					fluid(maxWidth: 2048, quality: 90) {
-						...GatsbyContentfulFluid
-						src
-					}
-					description
-					title
-				}
-				description {
-					raw
+				secondaryTitle
+				summary {
+					summary
 				}
 			}
 		}

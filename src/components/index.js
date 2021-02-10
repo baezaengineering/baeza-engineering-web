@@ -5,3 +5,4 @@ export { default as Menu } from './Menu';
 export { default as Nav } from './Nav';
 export { default as SEO } from './seo';
 export { default as Certifications } from './Certifications';
+export { default as ProjectsShortList } from './ProjectsShortList';

@@ -24,8 +24,8 @@ const Carousel = ({ carousel }) => {
 				cancelOnInteraction={false} // should stop playing on user interaction
 				interval={parseInt(carouselTimer)}
 			>
-				{carouselImage.map(({ fluid }, index) => {
-					return <div data-src={fluid.src} key={index} />;
+				{carouselImage.map(({ fluid, id }) => {
+					return <div data-src={fluid.src} key={id} />;
 				})}
 			</AutoplaySlider>
 		</CarouselContainer>
@@ -33,11 +33,7 @@ const Carousel = ({ carousel }) => {
 };
 
 Carousel.propTypes = {
-	data: PropTypes.object,
-};
-
-Carousel.defaultProps = {
-	data: {},
+	carousel: PropTypes.object.isRequired,
 };
 
 export default Carousel;

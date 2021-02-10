@@ -1,0 +1,50 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
+
+import { Section } from '../styles';
+
+const ProjectsContainer = styled(Section)``;
+
+const ProjectsList = styled.ol``;
+
+const ProjectsListItem = styled.li``;
+
+const SectionTitle = styled.h2`
+	font-weight: bold;
+`;
+
+const SecondaryTitle = styled.p`
+	font-weight: bold;
+`;
+
+const Summary = styled.div`
+	margin: 13px;
+`;
+
+const ProjectsShortList = ({ projects }) => {
+	return (
+		<ProjectsContainer>
+			<ProjectsList>
+				{projects.nodes.map(({ id, title, secondaryTitle, summary }) => {
+					return (
+						<ProjectsListItem key={id}>
+							<SectionTitle>{title}</SectionTitle>
+							<Summary>
+								<SecondaryTitle>{secondaryTitle}</SecondaryTitle>
+								<ReactMarkdown source={summary.summary} />
+							</Summary>
+						</ProjectsListItem>
+					);
+				})}
+			</ProjectsList>
+		</ProjectsContainer>
+	);
+};
+
+ProjectsShortList.propTyped = {
+	projects: PropTypes.object.isRequired,
+};
+
+export default ProjectsShortList;

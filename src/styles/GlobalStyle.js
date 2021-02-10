@@ -40,7 +40,6 @@ const GlobalStyle = createGlobalStyle`
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased;
         background-color: ${myColors.darkGray};
-        // color: ${myColors.slate};
         line-height: 1.3;
         font-family: sans-serif;
         font-size: ${fontSizes.xlarge};
