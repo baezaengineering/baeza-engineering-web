@@ -5,8 +5,12 @@ import Media from './Media';
 const { myColors, fontSizes } = Theme;
 
 const Mixins = {
-	flexContainer: `
+	flexContainer: css`
 		display: flex;
+		padding-right: 0;
+		${Media.thone`
+			display: block;
+		`};
 	`,
 	sidePadding: css`
 		padding: 0 150px;

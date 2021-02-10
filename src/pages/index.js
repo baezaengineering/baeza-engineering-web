@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { graphql } from 'gatsby';
+// import Img from 'gatsby-image';
 import styled from 'styled-components';
 
 import {
@@ -20,11 +20,16 @@ const MainContainer = styled(Main)`
 `;
 
 const FlexContainer = styled.div`
-	${Media.thone`
-		display: block;
-	`};
 	${Mixins.flexContainer};
-	padding-right: 0;
+`;
+
+const CarouselContainer = styled.div`
+	${Mixins.sidePadding}
+	${Media.thone`
+		padding-left: 0;
+		padding-right: 0;
+	`}
+	margin-bottom: 50px;
 `;
 
 const Content = styled(Section)`
@@ -55,12 +60,13 @@ const Sidebar = styled(Aside)`
 `;
 
 const IndexPage = ({ data }) => {
-	console.log(data);
 	return (
 		<Layout>
 			<MainContainer>
 				<SEO title='Home' />
-				<Carousel carousel={data.carousel} />
+				<CarouselContainer>
+					<Carousel carousel={data.carousel} />
+				</CarouselContainer>
 				<FlexContainer>
 					<Content>
 						<Certifications certifications={data.certifications} />
@@ -71,8 +77,6 @@ const IndexPage = ({ data }) => {
 						<Contact contact={data.contact} />
 					</Sidebar>
 				</FlexContainer>
-				<Link to='/page-2/'>Go to page 2</Link> <br />
-				<Link to='/using-typescript/'>Go to "Using TypeScript"</Link>
 			</MainContainer>
 		</Layout>
 	);

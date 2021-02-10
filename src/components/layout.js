@@ -4,13 +4,16 @@ import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 
-import { GlobalStyle } from '../styles';
+import { GlobalStyle, Media } from '../styles';
 // import Head from './Head';
 import Nav from './Nav';
 
 const LargeLogo = styled.div`
 	margin: 1rem auto 1.45rem auto;
 	max-width: 1100px;
+	${Media.thone`
+		padding: 10px;
+	`}
 `;
 
 const Layout = ({ children }) => {

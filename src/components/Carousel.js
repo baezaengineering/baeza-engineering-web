@@ -6,19 +6,13 @@ import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import 'react-awesome-slider/dist/styles.css';
 
 import { Section } from '../styles';
-import { Mixins } from '../styles';
 const AutoplaySlider = withAutoplay(AwesomeSlider);
-
-const CarouselContainer = styled(Section)`
-	${Mixins.sidePadding}
-	margin-bottom: 50px;
-`;
 
 const Carousel = ({ carousel }) => {
 	const { carouselImage, carouselTimer } = carousel.nodes[0];
 
 	return (
-		<CarouselContainer>
+		<Section>
 			<AutoplaySlider
 				play={true}
 				cancelOnInteraction={false} // should stop playing on user interaction
@@ -28,7 +22,7 @@ const Carousel = ({ carousel }) => {
 					return <div data-src={fluid.src} key={id} />;
 				})}
 			</AutoplaySlider>
-		</CarouselContainer>
+		</Section>
 	);
 };
 

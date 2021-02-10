@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
+import { Link } from 'gatsby';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 
@@ -41,7 +41,7 @@ const NavListItem = styled.li`
 	padding: 20px 0;
 `;
 
-const NavLink = styled(AnchorLink)`
+const NavLink = styled(props => <Link {...props} />)`
 	padding: 20px 35px;
 	position: relative;
 	text-decoration: none;
@@ -187,14 +187,14 @@ const Nav = () => {
 				<NavLinks>
 					<NavList>
 						<NavListItem>
-							<NavLink href={navLinks[0].url}>
+							<NavLink to={navLinks[0].url}>
 								<NavIcon icon={faHome} />
 								{navLinks[0].name}
 							</NavLink>
 						</NavListItem>
 						{navLinks.slice(1).map(({ name, url }, index) => (
 							<NavListItem key={index}>
-								<NavLink href={url}>{name}</NavLink>
+								<NavLink to={url}>{name}</NavLink>
 							</NavListItem>
 						))}
 					</NavList>
