@@ -1,22 +1,137 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from 'react';
+import { Link, graphql } from 'gatsby';
+import Img from 'gatsby-image';
+import styled from 'styled-components';
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import {
+	Layout,
+	SEO,
+	Carousel,
+	Certifications,
+	ProjectsShortList,
+	Contact,
+} from '../components';
+import { Mixins, Main, Section, Theme, Aside, Media } from '../styles';
+const { myColors } = Theme;
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-)
+const MainContainer = styled(Main)`
+	${Mixins.sidePadding};
+	background-color: ${myColors.gallery};
+`;
 
-export default IndexPage
+const FlexContainer = styled.div`
+	${Media.thone`
+		display: block;
+	`};
+	${Mixins.flexContainer};
+	padding-right: 0;
+`;
+
+const Content = styled(Section)`
+	flex: 1;
+	padding-right: 50px;
+	padding-left: 50px;
+	${Media.desktop`
+		padding-right: 20px;
+		padding-left: 20px;
+	`};
+	${Media.thone`
+		padding-right: 0px;
+		padding-left: 0px;
+	`};
+`;
+
+const Sidebar = styled(Aside)`
+	padding-right: 25px;
+	padding-left: 25px;
+	${Media.desktop`
+		padding-right: 10px;
+		padding-left: 10px;
+	`};
+	${Media.thone`
+		padding-right: 0px;
+		padding-left: 0px;
+	`};
+`;
+
+const IndexPage = ({ data }) => {
+	console.log(data);
+	return (
+		<Layout>
+			<MainContainer>
+				<SEO title='Home' />
+				<Carousel carousel={data.carousel} />
+				<FlexContainer>
+					<Content>
+						<Certifications certifications={data.certifications} />
+						<ProjectsShortList projects={data.projectsShortList} />
+						{/* <Img fluid={data.projects.nodes[0].projectImage.fluid} /> */}
+					</Content>
+					<Sidebar>
+						<Contact contact={data.contact} />
+					</Sidebar>
+				</FlexContainer>
+				<Link to='/page-2/'>Go to page 2</Link> <br />
+				<Link to='/using-typescript/'>Go to "Using TypeScript"</Link>
+			</MainContainer>
+		</Layout>
+	);
+};
+
+export default IndexPage;
+
+export const pageQuery = graphql`
+	{
+		navigation: allContentfulNavigation {
+			nodes {
+				companyLogo {
+					fluid(maxWidth: 2048, quality: 90) {
+						...GatsbyContentfulFluid
+					}
+				}
+			}
+		}
+		certifications: allContentfulCertification {
+			nodes {
+				id
+				description
+				certificationName
+			}
+		}
+		carousel: allContentfulImageCarousel {
+			nodes {
+				carouselImage {
+					id
+					fluid(maxWidth: 2048, quality: 90) {
+						...GatsbyContentfulFluid
+						src
+					}
+				}
+				carouselTimer
+			}
+		}
+		projectsShortList: allContentfulProjectsShortList {
+			nodes {
+				id
+				title
+				secondaryTitle
+				summary {
+					summary
+				}
+			}
+		}
+		contact: allContentfulContactSection {
+			nodes {
+				location {
+					lat
+					lon
+				}
+				address {
+					address
+				}
+				companyEmail
+				companyPhone
+			}
+		}
+	}
+`;
