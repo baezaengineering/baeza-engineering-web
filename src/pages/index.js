@@ -1,6 +1,5 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-// import Img from 'gatsby-image';
 import styled from 'styled-components';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import 'slick-carousel/slick/slick.css';
@@ -15,7 +14,7 @@ import {
 	ProjectsShortList,
 	Contact,
 } from '../components';
-import { Mixins, Main, Section, Theme, Aside, Media } from '../styles';
+import { Mixins, Main, Section, Theme, Aside } from '../styles';
 config.autoAddCss = false;
 const { myColors } = Theme;
 
@@ -30,12 +29,6 @@ const FlexContainer = styled.div`
 
 const CarouselContainer = styled.div`
 	margin: 0 auto;
-	// padding: 0 200px;
-	// ${Media.thone`
-	// 	padding-left: 0;
-	// 	padding-right: 0;
-	// `}
-	// margin-bottom: 50px;
 `;
 
 const Content = styled(Section)`
@@ -55,7 +48,6 @@ const IndexPage = ({ data }) => {
 					<Content>
 						<Certifications certifications={data.certifications} />
 						<ProjectsShortList projects={data.projectsShortList} />
-						{/* <Img fluid={data.projects.nodes[0].projectImage.fluid} /> */}
 					</Content>
 					<Aside>
 						<Contact contact={data.contact} />
@@ -90,7 +82,7 @@ export const pageQuery = graphql`
 			nodes {
 				carouselImage {
 					id
-					fluid(maxWidth: 2048, quality: 90) {
+					fluid(maxWidth: 2048, maxHeight: 1000, quality: 90) {
 						...GatsbyContentfulFluid
 						src
 					}
