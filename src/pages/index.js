@@ -44,7 +44,6 @@ const Content = styled(Section)`
 `;
 
 const IndexPage = ({ data }) => {
-	console.log(data);
 	return (
 		<Layout companyLogo={data.navigation.nodes[0].companyLogo.fluid}>
 			<MainContainer>

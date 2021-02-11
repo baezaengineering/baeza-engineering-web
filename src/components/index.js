@@ -1,5 +1,3 @@
-import Projects from '../pages/projects';
-
 export { default as Carousel } from './Carousel';
 export { default as Head } from './Head';
 export { default as Layout } from './Layout';

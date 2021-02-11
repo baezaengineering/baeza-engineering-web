@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 
-import { Theme, Media } from '../styles';
+import { Theme } from '../styles';
 const { myColors, fontSizes } = Theme;
 
 const ContactContainer = styled.div``;
@@ -66,7 +66,6 @@ const Contact = ({ contact }) => {
 					style={{ border: 0 }}
 					allowFullScreen={false}
 					aria-hidden={false}
-					tabIndex='0'
 				/>
 			</Map>
 		</ContactContainer>

@@ -4,15 +4,10 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import Img from 'gatsby-image';
 
-import { Theme } from '../styles';
 import '../styles/slider.css';
-const { myColors } = Theme;
 
 const SliderContainer = styled.div`
 	padding: 30px;
-	// width: 100%;
-	// padding: 40px;
-	// background: ${myColors.gallery};
 `;
 
 const Carousel = ({ carousel }) => {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Carousel } from '../components';
-import { Mixins, Section, Media, Aside } from '../styles';
+import { Media, Aside } from '../styles';
 
 const DetailedProjectsContainer = styled.div`
 	display: flex;
@@ -25,7 +25,7 @@ const DetailsTitle = styled.h2``;
 
 const DetailedProject = ({ project, carouselTimer = 3000 }) => {
 	const carouselImage = project.projectImages;
-	console.log(carouselImage);
+
 	return (
 		<DetailedProjectsContainer>
 			<CarouselContainer>
