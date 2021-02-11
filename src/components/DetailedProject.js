@@ -7,17 +7,17 @@ import { Media, Aside } from '../styles';
 
 const DetailedProjectsContainer = styled.div`
 	display: flex;
-	${Media.desktop`flex-direction: column;`};
+	${Media.bigDesktop`flex-direction: column;`};
 `;
 
 const CarouselContainer = styled.div`
 	flex-grow: 1;
-	max-width: 700px;
+	max-width: 650px;
 	margin-bottom: 50px;
 `;
 
 const DetailsContainer = styled(Aside)`
-	flex-basis: 200px;
+	flex-basis: 250px;
 	padding: 50px 0;
 `;
 
