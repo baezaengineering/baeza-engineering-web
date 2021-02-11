@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 
 import { GlobalStyle, Media } from '../styles';
-// import Head from './Head';
+import Head from './Head';
 import Nav from './Nav';
 
 const LargeLogo = styled.div`
@@ -16,27 +16,13 @@ const LargeLogo = styled.div`
 	`}
 `;
 
-const Layout = ({ children }) => {
-	const data = useStaticQuery(graphql`
-		query HeaderLogoQuery {
-			allContentfulNavigation {
-				nodes {
-					companyLogo {
-						fluid(maxWidth: 2048, quality: 90) {
-							...GatsbyContentfulFluid
-						}
-					}
-				}
-			}
-		}
-	`);
-
+const Layout = ({ companyLogo, children }) => {
 	return (
 		<div id='root'>
-			{/* <Head metadata={site.siteMetadata} /> */}
+			<Head />
 			<GlobalStyle />
 			<LargeLogo id='home'>
-				<Img fluid={data.allContentfulNavigation.nodes[0].companyLogo.fluid} />
+				<Img fluid={companyLogo} />
 			</LargeLogo>
 			<Nav />
 			<div className='container'>{children}</div>

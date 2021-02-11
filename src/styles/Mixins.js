@@ -8,15 +8,15 @@ const Mixins = {
 	flexContainer: css`
 		display: flex;
 		padding-right: 0;
-		${Media.thone`
+		${Media.desktop`
 			display: block;
 		`};
 	`,
 	sidePadding: css`
-		padding: 0 150px;
-		${Media.desktop`padding: 0 100px;`};
-		${Media.tablet`padding: 0 50px;`};
-		${Media.phablet`padding: 0 25px;`};
+		padding: 0 50px;
+		${Media.bigDesktop`padding: 0 50px;`};
+		${Media.tablet`padding: 25px;`};
+		${Media.phablet`padding: 0;`};
 	`,
 	flexCenter: css`
 		display: flex;
@@ -32,6 +32,18 @@ const Mixins = {
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
+	`,
+	row: css`
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 100%;
+	`,
+	column: css`
+		display: flex;
+		flex-direction: column;
+		flex-basis: 100%;
+		flex: 1;
 	`,
 	link: css`
 		display: inline-block;
@@ -49,28 +61,28 @@ const Mixins = {
 		}
 	`,
 	smallButton: css`
-    color: ${myColors.white};
-    background-color: transparent;
-    border: 1px solid ${myColors.white};
-    border-radius: 3px;
-    padding: 0.75rem 1rem;
-    font-size: ${fontSizes.smallish};
-    line-height: 1;
-    text-decoration: none;
-    cursor: pointer;
-    transition: ${Theme.transition};
-    outline: none;
-    &:hover,
-    &:focus,
-    &:active {
-      color: ${myColors.sage}
-      border-color: ${myColors.sage}
-      background-color: ${myColors.transparentSage};
-    }
-    &:after {
-      display: none !important;
-    }
-  `,
+		color: ${myColors.white};
+		background-color: transparent;
+		border: 1px solid ${myColors.white};
+		border-radius: 3px;
+		padding: 0.75rem 1rem;
+		font-size: ${fontSizes.smallish};
+		line-height: 1;
+		text-decoration: none;
+		cursor: pointer;
+		transition: ${Theme.transition};
+		outline: none;
+		&:hover,
+		&:focus,
+		&:active {
+		color: ${myColors.sage}
+		border-color: ${myColors.sage}
+		background-color: ${myColors.transparentSage};
+		}
+		&:after {
+		display: none !important;
+		}
+	`,
 };
 
 export default Mixins;

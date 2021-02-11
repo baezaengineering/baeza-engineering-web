@@ -25,12 +25,12 @@ const Navbar = styled.nav`
 	width: 100%;
 	position: relative;
 	background-color: ${myColors.alto};
-	${Media.tablet`${Mixins.flexEnd}`}
+	${Media.thone`${Mixins.flexEnd}`}
 `;
 
 const NavLinks = styled.div`
 	${Mixins.flexCenter};
-	${Media.tablet`display: none;`}
+	${Media.thone`display: none;`}
 `;
 
 const NavList = styled.ol`
@@ -75,7 +75,7 @@ const Hamburger = styled.div`
 	border: 0;
 	background-color: transparent;
 	display: none;
-	${Media.tablet`display: flex;`};
+	${Media.thone`display: flex;`};
 `;
 
 const HamburgerBox = styled.div`

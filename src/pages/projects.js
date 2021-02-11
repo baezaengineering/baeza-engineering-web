@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
 import styled from 'styled-components';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-import { Layout, Contact } from '../components';
+import { Layout, Contact, DetailedProject } from '../components';
 import SEO from '../components/seo';
-import { Main, Mixins, Theme, Section, Media, Aside } from '../styles';
+import { Main, Mixins, Theme, Section, Media } from '../styles';
+
 const { myColors } = Theme;
 
 const MainContainer = styled(Main)`
@@ -19,42 +21,33 @@ const FlexContainer = styled.div`
 
 const Content = styled(Section)`
 	flex: 1;
-	padding-right: 50px;
-	padding-left: 50px;
-	${Media.desktop`
-		padding-right: 20px;
-		padding-left: 20px;
-	`};
-	${Media.thone`
-		padding-right: 0px;
-		padding-left: 0px;
-	`};
 `;
 
-const Sidebar = styled(Aside)`
-	padding-right: 25px;
-	padding-left: 25px;
+const Sidebar = styled.div`
+	padding: 50px 0;
+	max-width: 200px;
 	${Media.desktop`
-		padding-right: 10px;
-		padding-left: 10px;
-	`};
-	${Media.thone`
-		padding-right: 0px;
-		padding-left: 0px;
-	`};
+		max-width: none;
+		width: 100%;`}
 `;
 
 const Projects = ({ data }) => {
+	const carouselTimer = data.carouselTimer.nodes[0].carouselTimer;
+
 	return (
-		<Layout>
+		<Layout companyLogo={data.navigation.nodes[0].companyLogo.fluid}>
 			<MainContainer>
 				<SEO title='Projects' />
 				<FlexContainer>
 					<Content>
-						<FlexContainer>
-							<Content>Image</Content>
-							<Sidebar>Description</Sidebar>
-						</FlexContainer>
+						{data.projects.nodes.map(({ id, ...project }) => (
+							<Fragment key={id}>
+								<DetailedProject
+									project={project}
+									carouselTimer={carouselTimer}
+								/>
+							</Fragment>
+						))}
 					</Content>
 					<Sidebar>
 						<Contact contact={data.contact} />
@@ -69,6 +62,15 @@ export default Projects;
 
 export const pageQuery = graphql`
 	{
+		navigation: allContentfulNavigation {
+			nodes {
+				companyLogo {
+					fluid(maxWidth: 2048, quality: 90) {
+						...GatsbyContentfulFluid
+					}
+				}
+			}
+		}
 		contact: allContentfulContactSection {
 			nodes {
 				location {
@@ -80,6 +82,36 @@ export const pageQuery = graphql`
 				}
 				companyEmail
 				companyPhone
+			}
+		}
+		projects: allContentfulProject {
+			nodes {
+				id
+				title
+				secondaryTitle
+				descriptionText {
+					descriptionText
+				}
+				footerText {
+					footerText
+				}
+				headerText {
+					headerText
+				}
+				projectImages {
+					id
+					fluid(maxWidth: 2048, quality: 90) {
+						...GatsbyContentfulFluid
+						src
+					}
+				}
+				projectType
+				completed
+			}
+		}
+		carouselTimer: allContentfulImageCarousel {
+			nodes {
+				carouselTimer
 			}
 		}
 	}

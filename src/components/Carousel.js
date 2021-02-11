@@ -1,28 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import AwesomeSlider from 'react-awesome-slider';
-import withAutoplay from 'react-awesome-slider/dist/autoplay';
-import 'react-awesome-slider/dist/styles.css';
+import Slider from 'react-slick';
+import Img from 'gatsby-image';
 
-import { Section } from '../styles';
-const AutoplaySlider = withAutoplay(AwesomeSlider);
+import { Theme } from '../styles';
+import '../styles/slider.css';
+const { myColors } = Theme;
+
+const SliderContainer = styled.div`
+	padding: 30px;
+	// width: 100%;
+	// padding: 40px;
+	// background: ${myColors.gallery};
+`;
 
 const Carousel = ({ carousel }) => {
-	const { carouselImage, carouselTimer } = carousel.nodes[0];
-
+	const { carouselImage, carouselTimer } = carousel;
+	const settings = {
+		dots: true,
+		autoplay: true,
+		autoplaySpeed: parseInt(carouselTimer),
+	};
 	return (
-		<Section>
-			<AutoplaySlider
-				play={true}
-				cancelOnInteraction={false} // should stop playing on user interaction
-				interval={parseInt(carouselTimer)}
-			>
+		<SliderContainer>
+			<Slider {...settings}>
 				{carouselImage.map(({ fluid, id }) => {
-					return <div data-src={fluid.src} key={id} />;
+					return (
+						<div key={id}>
+							<Img fluid={fluid} />
+						</div>
+					);
 				})}
-			</AutoplaySlider>
-		</Section>
+			</Slider>
+		</SliderContainer>
 	);
 };
 

@@ -2,6 +2,10 @@ import React from 'react';
 import { graphql } from 'gatsby';
 // import Img from 'gatsby-image';
 import styled from 'styled-components';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { config } from '@fortawesome/fontawesome-svg-core';
 
 import {
 	Layout,
@@ -12,6 +16,7 @@ import {
 	Contact,
 } from '../components';
 import { Mixins, Main, Section, Theme, Aside, Media } from '../styles';
+config.autoAddCss = false;
 const { myColors } = Theme;
 
 const MainContainer = styled(Main)`
@@ -24,48 +29,28 @@ const FlexContainer = styled.div`
 `;
 
 const CarouselContainer = styled.div`
-	${Mixins.sidePadding}
-	${Media.thone`
-		padding-left: 0;
-		padding-right: 0;
-	`}
-	margin-bottom: 50px;
+	margin: 0 auto;
+	// padding: 0 200px;
+	// ${Media.thone`
+	// 	padding-left: 0;
+	// 	padding-right: 0;
+	// `}
+	// margin-bottom: 50px;
 `;
 
 const Content = styled(Section)`
 	flex: 1;
-	padding-right: 50px;
-	padding-left: 50px;
-	${Media.desktop`
-		padding-right: 20px;
-		padding-left: 20px;
-	`};
-	${Media.thone`
-		padding-right: 0px;
-		padding-left: 0px;
-	`};
-`;
-
-const Sidebar = styled(Aside)`
-	padding-right: 25px;
-	padding-left: 25px;
-	${Media.desktop`
-		padding-right: 10px;
-		padding-left: 10px;
-	`};
-	${Media.thone`
-		padding-right: 0px;
-		padding-left: 0px;
-	`};
+	${Mixins.sidePadding};
 `;
 
 const IndexPage = ({ data }) => {
+	console.log(data);
 	return (
-		<Layout>
+		<Layout companyLogo={data.navigation.nodes[0].companyLogo.fluid}>
 			<MainContainer>
 				<SEO title='Home' />
 				<CarouselContainer>
-					<Carousel carousel={data.carousel} />
+					<Carousel carousel={data.carousel.nodes[0]} />
 				</CarouselContainer>
 				<FlexContainer>
 					<Content>
@@ -73,9 +58,9 @@ const IndexPage = ({ data }) => {
 						<ProjectsShortList projects={data.projectsShortList} />
 						{/* <Img fluid={data.projects.nodes[0].projectImage.fluid} /> */}
 					</Content>
-					<Sidebar>
+					<Aside>
 						<Contact contact={data.contact} />
-					</Sidebar>
+					</Aside>
 				</FlexContainer>
 			</MainContainer>
 		</Layout>
