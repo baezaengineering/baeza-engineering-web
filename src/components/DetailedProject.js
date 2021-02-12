@@ -49,7 +49,6 @@ const DetailedProject = ({ project, carouselTimer = 3000 }) => {
 		headerText,
 		descriptionText,
 		footerText,
-		completed,
 	} = project;
 
 	return (

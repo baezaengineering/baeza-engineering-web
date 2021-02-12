@@ -11,6 +11,7 @@ import {
 	Certifications,
 	ProjectsShortList,
 	Contact,
+	Footer,
 } from '../components';
 import { Mixins, Main, Section, Theme, Aside, Media } from '../styles';
 config.autoAddCss = false;
@@ -35,6 +36,7 @@ const CarouselContainer = styled.div`
 const Content = styled(Section)`
 	flex: 1;
 	${Mixins.sidePadding};
+	${Media.phablet`padding: 0;`}
 `;
 
 const IndexPage = ({ data }) => {
@@ -55,6 +57,7 @@ const IndexPage = ({ data }) => {
 					</Aside>
 				</FlexContainer>
 			</MainContainer>
+			<Footer />
 		</Layout>
 	);
 };

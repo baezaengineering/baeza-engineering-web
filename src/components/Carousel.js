@@ -17,7 +17,7 @@ const Carousel = ({ carousel }) => {
 		autoplay: true,
 		autoplaySpeed: parseInt(carouselTimer),
 	};
-	console.log(carousel);
+
 	return (
 		<SliderContainer>
 			<Slider {...settings}>

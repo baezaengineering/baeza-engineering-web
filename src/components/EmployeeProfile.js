@@ -51,7 +51,7 @@ const ResumeLink = styled.a`
 `;
 
 const EmployeeProfile = ({ profile }) => {
-	const { cv, employeeCerts, name, profileImage, startDate, title } = profile;
+	const { cv, employeeCerts, name, profileImage, startDate } = profile;
 
 	return (
 		<EmployeeProfileContainer>
@@ -70,6 +70,10 @@ const EmployeeProfile = ({ profile }) => {
 			</LinkContainer>
 		</EmployeeProfileContainer>
 	);
+};
+
+EmployeeProfile.propTypes = {
+	profile: PropTypes.object.isRequired,
 };
 
 export default EmployeeProfile;

@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 
-import { Layout, SEO, Contact, EmployeeProfile } from '../components';
+import { Layout, SEO, Contact, EmployeeProfile, Footer } from '../components';
 import { Mixins, Main, Section, Theme, Aside, Media } from '../styles';
 config.autoAddCss = false;
 const { myColors } = Theme;
@@ -56,6 +56,7 @@ const About = ({ data }) => {
 					</Aside>
 				</FlexContainer>
 			</MainContainer>
+			<Footer />
 		</Layout>
 	);
 };
