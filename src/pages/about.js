@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import '@fortawesome/fontawesome-svg-core/styles.css';
@@ -25,19 +25,31 @@ const FlexContainer = styled.div`
 
 const Content = styled(Section)`
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	${Mixins.sidePadding};
-	${Media.thone`flex-direction: column;`};
+	${Media.thone`
+		flex-direction: column; 
+		align-items: center`};
 `;
 
 const About = ({ data }) => {
+	// Sort the profiles array by employee number
+	data.profiles.nodes.sort((a, b) => a.employeeNumber - b.employeeNumber);
+
 	return (
 		<Layout companyLogo={data.navigation.nodes[0].companyLogo.fluid}>
 			<MainContainer>
 				<SEO title='Home' />
 				<FlexContainer>
 					<Content>
-						<EmployeeProfile />
-						<EmployeeProfile />
+						{data.profiles.nodes.map(({ id, ...profile }) => {
+							return (
+								<Fragment key={id}>
+									<EmployeeProfile profile={profile} />
+								</Fragment>
+							);
+						})}
 					</Content>
 					<Aside>
 						<Contact contact={data.contact} />
@@ -61,31 +73,27 @@ export const pageQuery = graphql`
 				}
 			}
 		}
-		allContentfulEmployeeProfile {
+		profiles: allContentfulEmployeeProfile {
 			nodes {
 				id
 				name
 				startDate
 				title
 				profileImage {
-					fluid {
-						base64
-						tracedSVG
-						srcWebp
-						srcSetWebp
+					fluid(maxWidth: 2048, quality: 90) {
+						...GatsbyContentfulFluid
+						src
 					}
 				}
 				cv {
-					fluid {
-						base64
-						tracedSVG
-						srcWebp
-						srcSetWebp
+					file {
+						url
 					}
 				}
 				employeeCerts {
 					employeeCerts
 				}
+				employeeNumber
 			}
 		}
 		contact: allContentfulContactSection {

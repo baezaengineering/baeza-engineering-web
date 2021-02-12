@@ -31,7 +31,8 @@ const Sidebar = styled.div`
 	max-width: 185px;
 	${Media.desktop`
 		max-width: none;
-		width: 100%;`}
+		width: 100%;
+	`}
 `;
 
 const Projects = ({ data }) => {
