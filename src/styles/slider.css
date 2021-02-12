@@ -1,0 +1,12 @@
+/* .slick-slide {
+	height: 500px;
+} */
+
+/* .slick-slide img {
+	margin-top: auto;
+} */
+
+.slick-prev:before,
+.slick-next:before {
+	color: black;
+}

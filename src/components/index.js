@@ -7,3 +7,6 @@ export { default as SEO } from './seo';
 export { default as Certifications } from './Certifications';
 export { default as ProjectsShortList } from './ProjectsShortList';
 export { default as Contact } from './Contact';
+export { default as DetailedProject } from './DetailedProject';
+export { default as EmployeeProfile } from './EmployeeProfile';
+export { default as Footer } from './Footer';

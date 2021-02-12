@@ -12,7 +12,7 @@ const ProjectsList = styled.ol``;
 const ProjectsListItem = styled.li``;
 
 const SectionTitle = styled.h2`
-	margin: 10px 0;
+	margin: 13px;
 	font-weight: bold;
 `;
 

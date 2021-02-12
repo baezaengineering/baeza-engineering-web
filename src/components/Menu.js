@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
+import { Link } from 'gatsby';
 import styled from 'styled-components';
 
 import { navLinks } from '../config';
@@ -63,7 +63,7 @@ const NavListItem = styled.li`
 	${Media.tiny`font-size: ${fontSizes.smallish};`};
 `;
 
-const NavLink = styled(AnchorLink)`
+const NavLink = styled(props => <Link {...props} />)`
 	${Mixins.smallButton};
 	display: inline-block;
 	margin-left: 10px;
@@ -92,7 +92,7 @@ const Menu = ({ menuOpen, toggleMenu }) => {
 						{navLinks &&
 							navLinks.map(({ url, name }, index) => (
 								<NavListItem key={index}>
-									<NavLink href={url}>{name}</NavLink>
+									<NavLink to={url}>{name}</NavLink>
 								</NavListItem>
 							))}
 					</NavList>
