@@ -14,7 +14,7 @@ const Aside = styled.aside`
 		padding-right: 0px;
 		padding-left: 0px;
 	`};
-	${Media.tablet`padding: 50px 0;`};
+	${Media.tablet`padding: 30px 0;`};
 `;
 
 export default Aside;

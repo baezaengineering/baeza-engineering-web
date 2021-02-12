@@ -3,11 +3,11 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { config } from '@fortawesome/fontawesome-svg-core';
 
-import { Layout, Contact, DetailedProject } from '../components';
-import SEO from '../components/seo';
+import { Layout, Contact, DetailedProject, SEO } from '../components';
 import { Main, Mixins, Theme, Section, Media } from '../styles';
-
+config.autoAddCss = false;
 const { myColors } = Theme;
 
 const MainContainer = styled(Main)`
@@ -17,6 +17,9 @@ const MainContainer = styled(Main)`
 
 const FlexContainer = styled.div`
 	${Mixins.flexContainer};
+	${Media.desktop`
+			display: block;
+		`};
 `;
 
 const Content = styled(Section)`
@@ -24,8 +27,8 @@ const Content = styled(Section)`
 `;
 
 const Sidebar = styled.div`
-	padding: 50px 0;
-	max-width: 200px;
+	padding: 30px 0;
+	max-width: 185px;
 	${Media.desktop`
 		max-width: none;
 		width: 100%;`}

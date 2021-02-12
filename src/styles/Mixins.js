@@ -8,15 +8,14 @@ const Mixins = {
 	flexContainer: css`
 		display: flex;
 		padding-right: 0;
-		${Media.desktop`
-			display: block;
-		`};
 	`,
 	sidePadding: css`
 		padding: 0 50px;
 		${Media.bigDesktop`padding: 0 50px;`};
 		${Media.tablet`padding: 25px;`};
-		${Media.phablet`padding: 0;`};
+		${Media.phablet`
+			padding: 0, 10px;
+		`};
 	`,
 	flexCenter: css`
 		display: flex;

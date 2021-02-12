@@ -2,16 +2,11 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 
-import {
-	Layout,
-	SEO,
-	Carousel,
-	Certifications,
-	ProjectsShortList,
-	Contact,
-} from '../components';
+import { Layout, SEO, Contact, EmployeeProfile } from '../components';
 import { Mixins, Main, Section, Theme, Aside, Media } from '../styles';
 config.autoAddCss = false;
 const { myColors } = Theme;
@@ -23,32 +18,26 @@ const MainContainer = styled(Main)`
 
 const FlexContainer = styled.div`
 	${Mixins.flexContainer};
-	${Media.desktop`
+	${Media.bigDesktop`
 		display: block;
 	`};
 `;
 
-const CarouselContainer = styled.div`
-	margin: 0 auto;
-`;
-
 const Content = styled(Section)`
-	flex: 1;
+	display: flex;
 	${Mixins.sidePadding};
+	${Media.thone`flex-direction: column;`};
 `;
 
-const IndexPage = ({ data }) => {
+const About = ({ data }) => {
 	return (
 		<Layout companyLogo={data.navigation.nodes[0].companyLogo.fluid}>
 			<MainContainer>
 				<SEO title='Home' />
-				<CarouselContainer>
-					<Carousel carousel={data.carousel.nodes[0]} />
-				</CarouselContainer>
 				<FlexContainer>
 					<Content>
-						<Certifications certifications={data.certifications} />
-						<ProjectsShortList projects={data.projectsShortList} />
+						<EmployeeProfile />
+						<EmployeeProfile />
 					</Content>
 					<Aside>
 						<Contact contact={data.contact} />
@@ -59,7 +48,7 @@ const IndexPage = ({ data }) => {
 	);
 };
 
-export default IndexPage;
+export default About;
 
 export const pageQuery = graphql`
 	{
@@ -72,32 +61,30 @@ export const pageQuery = graphql`
 				}
 			}
 		}
-		certifications: allContentfulCertification {
+		allContentfulEmployeeProfile {
 			nodes {
 				id
-				description
-				certificationName
-			}
-		}
-		carousel: allContentfulImageCarousel {
-			nodes {
-				carouselImage {
-					id
-					fluid(maxWidth: 2048, maxHeight: 1000, quality: 90) {
-						...GatsbyContentfulFluid
-						src
+				name
+				startDate
+				title
+				profileImage {
+					fluid {
+						base64
+						tracedSVG
+						srcWebp
+						srcSetWebp
 					}
 				}
-				carouselTimer
-			}
-		}
-		projectsShortList: allContentfulProjectsShortList {
-			nodes {
-				id
-				title
-				secondaryTitle
-				summary {
-					summary
+				cv {
+					fluid {
+						base64
+						tracedSVG
+						srcWebp
+						srcSetWebp
+					}
+				}
+				employeeCerts {
+					employeeCerts
 				}
 			}
 		}

@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Carousel } from '../components';
-import { Media, Aside } from '../styles';
+import { Media, Aside, Mixins } from '../styles';
 
 const DetailedProjectsContainer = styled.div`
-	display: flex;
+	${Mixins.flexContainer}
+	${Media.bigDesktop`
+		display: block;
+	`};
 	${Media.bigDesktop`flex-direction: column;`};
 `;
 
@@ -17,14 +20,37 @@ const CarouselContainer = styled.div`
 `;
 
 const DetailsContainer = styled(Aside)`
-	flex-basis: 250px;
-	padding: 50px 0;
+	flex-basis: 237px;
+	padding: 30px 13px;
 `;
 
-const DetailsTitle = styled.h2``;
+const DetailsTitle = styled.h2`
+	font-size: 1.3rem;
+`;
+
+const SecondaryTitle = styled.h3`
+	font-size: 1.3rem;
+`;
+
+const HeaderText = styled.p`
+	font-size: 0.9rem;
+	font-weight: bold;
+`;
+
+const DescriptionText = styled.p``;
+
+const FooterText = styled.p``;
 
 const DetailedProject = ({ project, carouselTimer = 3000 }) => {
 	const carouselImage = project.projectImages;
+	const {
+		title,
+		secondaryTitle,
+		headerText,
+		descriptionText,
+		footerText,
+		completed,
+	} = project;
 
 	return (
 		<DetailedProjectsContainer>
@@ -32,7 +58,15 @@ const DetailedProject = ({ project, carouselTimer = 3000 }) => {
 				<Carousel carousel={{ carouselImage, carouselTimer }} />
 			</CarouselContainer>
 			<DetailsContainer>
-				<DetailsTitle>Details</DetailsTitle>
+				<DetailsTitle>{title}</DetailsTitle>
+				<br />
+				<SecondaryTitle>{secondaryTitle}</SecondaryTitle>
+				<br />
+				<HeaderText>{headerText.headerText}</HeaderText>
+				<br />
+				<DescriptionText>{descriptionText.descriptionText}</DescriptionText>
+				<br />
+				<FooterText>{footerText.footerText}</FooterText>
 			</DetailsContainer>
 		</DetailedProjectsContainer>
 	);
