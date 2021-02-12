@@ -11,8 +11,8 @@ const options = {
 };
 
 if (process.env.NODE_ENV === 'production') {
-	options.host = process.env.CONTENTFUL_CDA_HOST;
-	options.accessToken = process.env.CONTENTFUL_CDA_TOKEN;
+	options.host = 'cdn.contentful.com';
+	options.accessToken = 'q7OPel7aHAdLeD4i2sCiwmCWSIIGcKgh4owKpRAxtVY';
 }
 
 module.exports = {
