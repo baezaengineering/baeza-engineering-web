@@ -7,11 +7,11 @@ const config = require('./src/config');
 const options = {
 	host: 'cdn.contentful.com',
 	accessToken: 'q7OPel7aHAdLeD4i2sCiwmCWSIIGcKgh4owKpRAxtVY',
-	spaceId: process.env.CONTENTFUL_SPACE_ID,
+	spaceId: 'enn7pr5xpdob',
 };
 
 if (process.env.NODE_ENV === 'production') {
-	options.host = 'cdn.contentful.com';
+	options.host = process.env.CONTENTFUL_CDA_HOST;
 	options.accessToken = 'q7OPel7aHAdLeD4i2sCiwmCWSIIGcKgh4owKpRAxtVY';
 }
 
