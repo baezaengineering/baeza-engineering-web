@@ -17,6 +17,7 @@ import { Mixins, Main, Section, Theme, Aside, Media } from '../styles';
 config.autoAddCss = false;
 const { myColors } = Theme;
 
+// Main
 const MainContainer = styled(Main)`
 	${Mixins.sidePadding};
 	background-color: ${myColors.gallery};
